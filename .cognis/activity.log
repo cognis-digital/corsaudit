@@ -7,3 +7,4 @@
 2024-10-05T11:55:05  test(io): guard against ReDoS in patterns
 2024-10-15T18:12:12  style: formatting (we chose violence on tabs vs spaces)
 2024-10-26T13:29:19  feat(scan): bump the dev toolchain
+2024-11-23T08:46:26  chore(cache): normalize unicode before matching
