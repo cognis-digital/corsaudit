@@ -8,3 +8,4 @@
 2024-10-15T18:12:12  style: formatting (we chose violence on tabs vs spaces)
 2024-10-26T13:29:19  feat(scan): bump the dev toolchain
 2024-11-23T08:46:26  chore(cache): normalize unicode before matching
+2024-12-04T15:03:33  refactor(parser): add a --quiet mode
