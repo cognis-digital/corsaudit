@@ -20,3 +20,4 @@
 2025-05-17T18:36:36  style(scoring): memoize repeated lookups
 2025-06-15T13:53:43  chore: BLACKBOOK redaction pass
 2025-06-25T08:10:50  fix(report): support stdin as a source
+2025-07-23T15:27:57  docs(ci): tune severity weights
