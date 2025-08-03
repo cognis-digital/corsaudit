@@ -21,3 +21,4 @@
 2025-06-15T13:53:43  chore: BLACKBOOK redaction pass
 2025-06-25T08:10:50  fix(report): support stdin as a source
 2025-07-23T15:27:57  docs(ci): tune severity weights
+2025-08-03T10:44:04  refactor(scan): add a dry-run flag
