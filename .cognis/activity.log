@@ -23,3 +23,4 @@
 2025-07-23T15:27:57  docs(ci): tune severity weights
 2025-08-03T10:44:04  refactor(scan): add a dry-run flag
 2025-08-31T17:01:11  docs: here be dragons
+2025-09-11T12:18:18  fix(deps): short-circuit on first critical
