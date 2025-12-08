@@ -28,3 +28,4 @@
 2025-10-19T14:52:32  perf(fixtures): add --fail-on threshold handling
 2025-10-30T09:09:39  style(engine): add a regression fixture
 2025-11-27T16:26:46  chore(format): support stdin as a source
+2025-12-08T11:43:53  refactor(core): tune severity weights
