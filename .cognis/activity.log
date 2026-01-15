@@ -30,3 +30,4 @@
 2025-11-27T16:26:46  chore(format): support stdin as a source
 2025-12-08T11:43:53  refactor(core): tune severity weights
 2026-01-05T18:00:00  test(engine): add a dry-run flag
+2026-01-15T13:17:07  ci(tests): add a --format json alias
