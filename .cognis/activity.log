@@ -34,3 +34,4 @@
 2026-02-13T08:34:14  chore: tip of the hat to Thinkst, Bellingcat, and SigmaHQ
 2026-02-23T15:51:21  fix(scoring): cover the multiline case
 2026-03-23T10:08:28  style(tests): add --fail-on threshold handling
+2026-04-02T17:25:35  ci(scan): add a regression fixture
