@@ -37,3 +37,4 @@
 2026-04-02T17:25:35  ci(scan): add a regression fixture
 2026-04-12T12:42:42  docs: clarify usage notes
 2026-05-11T19:59:49  chore(rules): make timestamps timezone-aware
+2026-05-21T14:16:56  refactor(output): dedupe overlapping findings
