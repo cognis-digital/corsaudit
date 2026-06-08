@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: { name: corsaudit, labels: { app: corsaudit } }
+spec:
+  replicas: 1
+  selector: { matchLabels: { app: corsaudit } }
+  template:
+    metadata: { labels: { app: corsaudit } }
+    spec:
+      containers:
+        - name: corsaudit
+          image: ghcr.io/cognis-digital/corsaudit:latest
+          ports: [{ containerPort: 8000 }]
+          resources:
+            requests: { cpu: "50m", memory: "64Mi" }
+            limits: { cpu: "500m", memory: "256Mi" }
+---
+apiVersion: v1
+kind: Service
+metadata: { name: corsaudit }
+spec:
+  selector: { app: corsaudit }
+  ports: [{ port: 80, targetPort: 8000 }]
