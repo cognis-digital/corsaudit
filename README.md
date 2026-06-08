@@ -36,9 +36,9 @@ catch wildcard+credentials
 <a name="features"></a>
 ## Features
 
-- ✅ Todo
-- ✅ Fixme
-- ✅ Xxx
+- ✅ Parse Header Block
+- ✅ Analyze Headers
+- ✅ Analyze Config
 - ✅ Runs on Linux/macOS/Windows · Docker · devcontainer
 - ✅ Ports in Python, JavaScript, Go, and Rust (`ports/`)
 
