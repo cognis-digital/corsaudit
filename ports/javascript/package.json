@@ -1,0 +1,10 @@
+{
+  "name": "@cognis/corsaudit",
+  "version": "0.2.0",
+  "description": "JavaScript port of corsaudit (Cognis Neural Suite)",
+  "bin": {
+    "corsaudit": "index.js"
+  },
+  "license": "LicenseRef-COCL-1.0",
+  "type": "module"
+}
