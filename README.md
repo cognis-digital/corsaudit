@@ -16,7 +16,7 @@
 </div>
 
 ```bash
-pip install cognis-corsaudit
+pip install "git+https://github.com/cognis-digital/corsaudit.git"
 corsaudit scan .            # → prioritized findings in seconds
 ```
 
@@ -48,7 +48,7 @@ catch wildcard+credentials
 ## Quick start
 
 ```bash
-pip install cognis-corsaudit
+pip install "git+https://github.com/cognis-digital/corsaudit.git"
 corsaudit --version
 corsaudit scan .                       # scan current project
 corsaudit scan . --format json         # machine-readable
