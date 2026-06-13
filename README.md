@@ -20,6 +20,12 @@ pip install "git+https://github.com/cognis-digital/corsaudit.git"
 corsaudit scan .            # → prioritized findings in seconds
 ```
 
+<!-- cognis:layman:start -->
+## What is this?
+
+CORSAUDIT checks whether a website's cross-origin sharing settings are configured safely — these settings control which other websites are allowed to read data from a web server using a browser. You give it a captured response from a server (or a copy of its config file), and it tells you if the rules are too permissive in a way that could let an attacker's website steal your users' data or take actions on their behalf. It works entirely offline, reads no live network traffic, and fits into automated build pipelines so teams catch problems before they ship. It is aimed at developers, security engineers, and DevOps teams who want a fast, scriptable way to audit CORS without manual inspection.
+<!-- cognis:layman:end -->
+
 ## Contents
 
 - [Why corsaudit?](#why) · [Features](#features) · [Quick start](#quick-start) · [Example](#example) · [Architecture](#architecture) · [AI stack](#ai-stack) · [How it compares](#how-it-compares) · [Integrations](#integrations) · [Install anywhere](#install-anywhere) · [Related](#related) · [Contributing](#contributing)
@@ -45,6 +51,42 @@ catch wildcard+credentials
 <div align="right"><a href="#top">↑ back to top</a></div>
 
 <a name="quick-start"></a>
+<!-- cognis:install:start -->
+## Install
+
+`corsaudit` is source-available (not published to PyPI) — every method below installs
+straight from GitHub. Pick whichever you prefer; the one-line scripts auto-detect
+the best tool available on your machine.
+
+**One-liner (Linux / macOS):**
+```sh
+curl -fsSL https://raw.githubusercontent.com/cognis-digital/corsaudit/HEAD/install.sh | sh
+```
+
+**One-liner (Windows PowerShell):**
+```powershell
+irm https://raw.githubusercontent.com/cognis-digital/corsaudit/HEAD/install.ps1 | iex
+```
+
+**Or install manually — any one of:**
+```sh
+pipx install "git+https://github.com/cognis-digital/corsaudit.git"     # isolated (recommended)
+uv tool install "git+https://github.com/cognis-digital/corsaudit.git"  # uv
+pip install "git+https://github.com/cognis-digital/corsaudit.git"      # pip
+```
+
+**From source:**
+```sh
+git clone https://github.com/cognis-digital/corsaudit.git
+cd corsaudit && pip install .
+```
+
+Then run:
+```sh
+corsaudit --help
+```
+<!-- cognis:install:end -->
+
 ## Quick start
 
 ```bash
