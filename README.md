@@ -20,6 +20,40 @@ pip install cognis-corsaudit
 corsaudit scan .            # → prioritized findings in seconds
 ```
 
+## Usage — step by step
+
+1. **Install:**
+
+   ```bash
+   pip install -e .
+   ```
+
+2. **Analyze captured response headers** with the `headers` subcommand (reads a file or `-` for stdin). Pass `--origin` to enable reflection checks against the probe Origin you sent:
+
+   ```bash
+   curl -sD - -H 'Origin: https://evil.example' https://api.example.com -o /dev/null \
+     | corsaudit headers - --origin https://evil.example
+   ```
+
+3. **Or audit a declarative CORS config** (JSON file or stdin) with the `config` subcommand:
+
+   ```bash
+   corsaudit config cors.json
+   ```
+
+4. **Read the result.** Each finding shows a `RULE`, `SEVERITY`, title, the offending origin, detail, and a `fix:` remediation. Use `--format json` for piping; the process exits **1 when any finding is reported**, **0 when clean**, **2 on usage error**. corsaudit performs no network requests — it only analyzes input you give it.
+
+   ```bash
+   corsaudit headers headers.txt --format json
+   ```
+
+5. **Use it in CI** — fail the pipeline on any CORS misconfiguration:
+
+   ```bash
+   corsaudit config cors.json --format json || { echo "CORS misconfig"; exit 1; }
+   ```
+
+
 ## Contents
 
 - [Why corsaudit?](#why) · [Features](#features) · [Quick start](#quick-start) · [Example](#example) · [Architecture](#architecture) · [AI stack](#ai-stack) · [How it compares](#how-it-compares) · [Integrations](#integrations) · [Install anywhere](#install-anywhere) · [Related](#related) · [Contributing](#contributing)
