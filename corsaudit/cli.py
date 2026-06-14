@@ -32,9 +32,21 @@ from .core import (
 
 def _read_input(path: Optional[str]) -> str:
     if path is None or path == "-":
-        return sys.stdin.read()
-    with open(path, "r", encoding="utf-8") as fh:
-        return fh.read()
+        try:
+            return sys.stdin.read()
+        except UnicodeDecodeError as exc:
+            raise OSError("stdin contains non-UTF-8 data: {}".format(exc)) from exc
+    try:
+        with open(path, "r", encoding="utf-8") as fh:
+            return fh.read()
+    except IsADirectoryError:
+        raise OSError("input path is a directory, not a file: {}".format(path))
+    except PermissionError:
+        raise OSError("permission denied reading: {}".format(path))
+    except UnicodeDecodeError as exc:
+        raise OSError(
+            "file '{}' is not valid UTF-8: {}".format(path, exc)
+        ) from exc
 
 
 def _render_table(findings: List[Finding]) -> str:
@@ -144,6 +156,9 @@ def main(argv: Optional[List[str]] = None) -> int:
     try:
         if args.command == "headers":
             text = _read_input(args.input)
+            if not text.strip():
+                print("error: empty input — no headers to analyze", file=sys.stderr)
+                return 2
             headers = parse_header_block(text)
             if not headers:
                 print("error: no parseable headers in input", file=sys.stderr)
@@ -151,23 +166,33 @@ def main(argv: Optional[List[str]] = None) -> int:
             findings = analyze_headers(headers, request_origin=args.origin)
         elif args.command == "config":
             text = _read_input(args.input)
+            if not text.strip():
+                print("error: empty input — no JSON config to parse", file=sys.stderr)
+                return 2
             try:
                 config = json.loads(text)
             except json.JSONDecodeError as exc:
                 print("error: invalid JSON config: {}".format(exc), file=sys.stderr)
                 return 2
             if not isinstance(config, dict):
-                print("error: config must be a JSON object", file=sys.stderr)
+                print("error: config must be a JSON object, got {}".format(
+                    type(config).__name__), file=sys.stderr)
                 return 2
             findings = analyze_config(config)
         else:  # pragma: no cover - argparse enforces this
             parser.error("unknown command")
             return 2
     except FileNotFoundError as exc:
-        print("error: {}".format(exc), file=sys.stderr)
+        print("error: file not found: {}".format(exc), file=sys.stderr)
         return 2
     except OSError as exc:
         print("error: {}".format(exc), file=sys.stderr)
+        return 2
+    except (TypeError, ValueError) as exc:
+        print("error: {}".format(exc), file=sys.stderr)
+        return 2
+    except Exception as exc:  # pragma: no cover - safety net
+        print("error: unexpected error: {}".format(exc), file=sys.stderr)
         return 2
 
     _output(findings, args.format)

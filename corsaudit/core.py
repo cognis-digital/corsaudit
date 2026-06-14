@@ -130,7 +130,15 @@ def analyze_headers(
     headers: mapping of response header name -> value (str or list of str).
     request_origin: the Origin header that was sent in the probe request, if
         known. Required to detect reflection-based issues precisely.
+
+    Raises TypeError if *headers* is not a dict-like mapping.
     """
+    if headers is None:
+        raise TypeError("headers must be a dict, got None")
+    if not isinstance(headers, dict):
+        raise TypeError(
+            "headers must be a dict, got {}".format(type(headers).__name__)
+        )
     h = _norm_headers(headers)
     findings: List[Finding] = []
 
@@ -354,7 +362,15 @@ def analyze_config(config: Dict[str, object]) -> List[Finding]:
 
     Recognized keys (case-insensitive): allowed_origins / origins (str or list),
     allow_credentials / credentials (bool-ish), allowed_methods / methods.
+
+    Raises TypeError if *config* is not a dict-like mapping.
     """
+    if config is None:
+        raise TypeError("config must be a dict, got None")
+    if not isinstance(config, dict):
+        raise TypeError(
+            "config must be a dict, got {}".format(type(config).__name__)
+        )
     norm = {str(k).strip().lower(): v for k, v in config.items()}
 
     origins_raw = norm.get("allowed_origins", norm.get("origins", []))
