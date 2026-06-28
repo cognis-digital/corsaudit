@@ -20,6 +20,64 @@ pip install cognis-corsaudit
 corsaudit scan .            # → prioritized findings in seconds
 ```
 
+
+<!-- cognis:example:start -->
+## 🔎 Example output
+
+Real, reproducible output from the tool — runs offline:
+
+```console
+$ corsaudit-emit --version
+corsaudit 0.1.0
+```
+
+```console
+$ corsaudit-emit --help
+usage: corsaudit [-h] [--version] [--format {table,json}] {headers,config} ...
+
+Detect permissive/misconfigured CORS from captured response headers or a
+config. Defensive analysis only -- performs no network requests.
+
+positional arguments:
+  {headers,config}
+    headers             Analyze a captured 'Name: value' response-header
+                        block.
+    config              Analyze a declarative CORS config from a JSON file.
+
+options:
+  -h, --help            show this help message and exit
+  --version             show program's version number and exit
+  --format {table,json}
+                        Output format (default: table).
+```
+
+> Blocks above are real `corsaudit` output — reproduce them from a clone.
+
+**Sample result format** _(illustrative values — run on your own data for real findings):_
+
+```
+{
+"findings": [
+    {
+        "id": "123456",
+        "title": "Suspicious Connection",
+        "description": "A potential security issue was detected.",
+        "severity": "medium",
+        "created": "2023-02-15T14:30:00Z"
+    },
+    {
+        "id": "789012",
+        "title": "Malware Detection",
+        "description": "A malicious file was found on the system.",
+        "severity": "high",
+        "created": "2023-02-16T10:45:00Z"
+    }
+]
+}
+```
+
+<!-- cognis:example:end -->
+
 ## Usage — step by step
 
 1. **Install:**

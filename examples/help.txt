@@ -1,0 +1,18 @@
+$ corsaudit-emit --help
+
+usage: corsaudit [-h] [--version] [--format {table,json}] {headers,config} ...
+
+Detect permissive/misconfigured CORS from captured response headers or a
+config. Defensive analysis only -- performs no network requests.
+
+positional arguments:
+  {headers,config}
+    headers             Analyze a captured 'Name: value' response-header
+                        block.
+    config              Analyze a declarative CORS config from a JSON file.
+
+options:
+  -h, --help            show this help message and exit
+  --version             show program's version number and exit
+  --format {table,json}
+                        Output format (default: table).
